@@ -6,20 +6,22 @@ When two sets of data are strongly linked together.
 
 ## Formula
 
-$$ r_{xy} = {\left ( n \sum x_iy_i - \sum x_i \sum y_i \right) \over \sqrt{n \sum x_i^2 - (\sum x_i)^2} \sqrt{n \sum y_i^2 - (\sum y_i)^2} } $$
+$$ r = \frac{\sum{(X_i - \bar{X})(Y_i - \bar{Y})}}{\sqrt{\sum{(X_i - \bar{X})^2}\sum{(Y_i - \bar{Y})^2}}} $$
+$$ \bar{X} = {\sum{X_i} \over N} $$
+$$ \bar{Y} = {\sum{Y_i} \over N} $$
 
 ## Algorithm
 
-- Save memory for n, x, y, sumX, sumY
+- Save memory for n, x, y, meanX, meanY, sumX, sumY
 - Request total number of array -> (n)
 - Request element of array (x) until reach (n)
 - Request element of array (y) until reach (n)
-- Sum-up x[i] until reach (n) -> sumX
-- Sum-up y[i] until reach (n) -> sumY
-- Calculate n \* sumX \* sumY - sumX \* sumY -> a
-- Calculate n \* pow(sumX, 2) - pow(sumX, 2) -> b
-- Calculate sqrt(b) -> b
-- Calculate n \* pow(sumY, 2) - pow(sumY, 2) -> c
-- Calculate sqrt(c) -> c
-- Calculate a / b \* c -> r
+- Sum-up x until reach (n) -> sumX
+- Sum-up y until reach (n) -> sumY
+- Calculate sumX / n -> meanX
+- Calculate sumY / n -> meanY
+- Calculate (x[i] - meanX) * (y[i] - meanY)-> numerator
+- Sum-up (x[i] - meanX)^2 -> denominator1
+- Sum-up (y[i] - meanY)^2 -> denominator2
+- Calculate numerator / sqrt(denominator1 * denominator2) -> r
 - Print r
